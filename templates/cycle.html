@@ -1,0 +1,11 @@
+<!-- cycle.html -->
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<table>
+  {% for item in items %}
+  <tr class="{% cycle 'even' 'odd' %}">
+    <td>{{ item }}</td>
+  </tr>
+  {% endfor %}
+</table>

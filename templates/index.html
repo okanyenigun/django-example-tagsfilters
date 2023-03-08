@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <ol>
+      {% for car in cars reversed %}
+      <li>{{car.brand}}</li>
+      {% endfor %}
+    </ol>
+    <div>
+      {% for x, y in coordinates %}
+      <p>There is a point at {{ x }},{{ y }}</p>
+      {% endfor %}
+    </div>
+    <div>
+      {% for key, value in dicto.items %}
+      <p>{{value}} e la capital de la {{key}}</p>
+      {% endfor %}
+    </div>
+    <ol>
+      {% for e in empty_list %}
+      <li>{{e}}</li>
+      {% empty %}
+      <p>List is empty.</p>
+      {% endfor %}
+    </ol>
+    <div>
+      <ol>
+        {% for car in cars reversed %} {% if forloop.first %}
+        <li>This is the first item: {{car.id}}</li>
+        {% else %}
+        <li>{{car.brand}}</li>
+        {% endif %} {% endfor %}
+      </ol>
+    </div>
+    <div>
+      <!-- checks if cars is True, we have a list called cars -->
+      {% if cars %}
+      <div>
+        <!-- loop over car records -->
+        {% for car in cars %}
+        <div>
+          <!-- first nested  if -->
+          {% if car.is_new %}
+          <p>{{car.id}} is a new car.</p>
+          {% else %}
+          <!-- second nested if -->
+          {% if car.age > 4 %}
+          <p>{{car.id}} is older than 4 years. Age: {{car.age}}</p>
+          {% elif car.age <= 4 and car.age > 0 %}
+          <p>{{car.id}} is younger than 4 years. Age: {{car.age}}</p>
+          {% else %}
+          <p>else something</p>
+          <!-- end of second nested if -->
+          {% endif %}
+          <!-- end of first  if -->
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <!-- end of outer if -->
+      {% endif %}
+    </div>
+    <div>
+      <ul>
+        {% for number in numbers %} {% ifchanged %}
+        <li>{{ number }}</li>
+        {% endifchanged %} {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <a href="{% url 'hello' 'John' %}">Say hello to John</a>
+    </div>
+  </body>
+</html>
